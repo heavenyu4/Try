@@ -10,7 +10,7 @@ import io.reactivex.functions.Function;
 /**
  * Author: heaven
  * Time: 2019/2/21  15:00
- * Description:
+ * Description: 测试map, flatmap, concatMap操作
  */
 public class RxAndroidTest {
 
