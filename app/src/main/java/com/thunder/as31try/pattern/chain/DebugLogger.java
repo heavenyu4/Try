@@ -1,4 +1,4 @@
-package com.thunder.as31try.pattern.strategy;
+package com.thunder.as31try.pattern.chain;
 
 /**
  * Author: heaven
