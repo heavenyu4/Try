@@ -11,4 +11,9 @@
         <item name="android:windowCloseOnTouchOutside">false</item>
     </style>
 
+    <style name="spinnerheight" parent="Base.Widget.AppCompat.Spinner">
+        <item name="android:dropDownHeight">100dp</item>
+    </style>
+
+
 </resources>
