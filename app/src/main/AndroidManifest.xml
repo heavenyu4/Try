@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.thunder.as31try">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -35,9 +38,11 @@
         <activity android:name=".exceptioncheck.TestExceptionActivity">
         </activity>
         <activity android:name=".anno.TestAnnotationActivity">
-
         </activity>
         <activity android:name=".spinnerdemo.TestSpinnerActivity">
+
+        </activity>
+        <activity android:name=".gbkconvert.GBKConvertActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
