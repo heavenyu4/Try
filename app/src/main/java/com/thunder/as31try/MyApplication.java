@@ -2,7 +2,6 @@ package com.thunder.as31try;
 
 import android.app.Application;
 
-import com.blankj.utilcode.util.Utils;
 import com.lzy.okgo.OkGo;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
@@ -25,7 +24,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        Utils.init(this);
+//        Utils.init(this);
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         //全局的读取超时时间
@@ -47,4 +46,6 @@ public class MyApplication extends Application {
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(this, "");
     }
+
+
 }

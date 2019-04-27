@@ -39,6 +39,6 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.1.56.android'
     implementation 'com.android.support:support-v4:27.0.0'
 
-    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
-    implementation "io.reactivex.rxjava2:rxjava:2.1.5"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+    implementation "io.reactivex.rxjava2:rxjava:2.1.16"
 }

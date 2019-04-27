@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.thunder.as31try">
+    package="com.thunder.as31try">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".MyApplication"
@@ -16,41 +16,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
+        <activity android:name=".mvpdemo.MvpDemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/DialogStyle">
-        </activity>
-        <activity android:name=".bluetooth.Main"/>
-        <activity android:name=".bluetooth.AutoConnectActivity"/>
-        <activity android:name=".bluetooth.DeviceListActivity"/>
-        <activity android:name=".bluetooth.ListenerActivity"/>
-        <activity android:name=".bluetooth.SimpleActivity"/>
-        <activity android:name=".bluetooth.TerminalActivity"/>
-        <activity android:name=".ziptest.ZipDemoActivity"/>
-        <activity android:name=".okgotest.OkGoDemoActivity"/>
+            android:theme="@style/DialogStyle"></activity>
+        <activity android:name=".bluetooth.Main" />
+        <activity android:name=".bluetooth.AutoConnectActivity" />
+        <activity android:name=".bluetooth.DeviceListActivity" />
+        <activity android:name=".bluetooth.ListenerActivity" />
+        <activity android:name=".bluetooth.SimpleActivity" />
+        <activity android:name=".bluetooth.TerminalActivity" />
+        <activity android:name=".ziptest.ZipDemoActivity" />
+        <activity android:name=".okgotest.OkGoDemoActivity" />
 
-        <service android:name=".service.LeakUploadService"/>
+        <service android:name=".service.LeakUploadService" />
 
-        <activity android:name=".activity.LeakTestActivity"/>
-        <activity android:name=".activity.PhotoOOMActivity">
-        </activity>
-        <activity android:name=".fragmentdemo.FragmentDemoActivity">
-        </activity>
-        <activity android:name=".exceptioncheck.TestExceptionActivity">
-        </activity>
-        <activity android:name=".anno.TestAnnotationActivity">
-        </activity>
-        <activity android:name=".spinnerdemo.TestSpinnerActivity">
-        </activity>
-        <activity android:name=".gbkconvert.GBKConvertActivity">
-
-        </activity>
+        <activity android:name=".activity.LeakTestActivity" />
+        <activity android:name=".activity.PhotoOOMActivity"></activity>
+        <activity android:name=".fragmentdemo.FragmentDemoActivity"></activity>
+        <activity android:name=".exceptioncheck.TestExceptionActivity"></activity>
+        <activity android:name=".anno.TestAnnotationActivity"></activity>
+        <activity android:name=".spinnerdemo.TestSpinnerActivity"></activity>
+        <activity android:name=".gbkconvert.GBKConvertActivity"></activity>
         <activity android:name=".bitmapcompress.BitmapDemoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
     </application>
 
