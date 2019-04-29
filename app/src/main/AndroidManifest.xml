@@ -16,16 +16,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
-        <activity android:name=".mvpdemo.MvpDemoActivity">
+        <activity android:name=".mmkvdemo.MMKVDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".mvpdemo.MvpDemoActivity">
+
+        </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/DialogStyle"></activity>
+            android:theme="@style/DialogStyle" />
         <activity android:name=".bluetooth.Main" />
         <activity android:name=".bluetooth.AutoConnectActivity" />
         <activity android:name=".bluetooth.DeviceListActivity" />
@@ -38,15 +41,13 @@
         <service android:name=".service.LeakUploadService" />
 
         <activity android:name=".activity.LeakTestActivity" />
-        <activity android:name=".activity.PhotoOOMActivity"></activity>
-        <activity android:name=".fragmentdemo.FragmentDemoActivity"></activity>
-        <activity android:name=".exceptioncheck.TestExceptionActivity"></activity>
-        <activity android:name=".anno.TestAnnotationActivity"></activity>
-        <activity android:name=".spinnerdemo.TestSpinnerActivity"></activity>
-        <activity android:name=".gbkconvert.GBKConvertActivity"></activity>
-        <activity android:name=".bitmapcompress.BitmapDemoActivity">
-
-        </activity>
+        <activity android:name=".activity.PhotoOOMActivity" />
+        <activity android:name=".fragmentdemo.FragmentDemoActivity" />
+        <activity android:name=".exceptioncheck.TestExceptionActivity" />
+        <activity android:name=".anno.TestAnnotationActivity" />
+        <activity android:name=".spinnerdemo.TestSpinnerActivity" />
+        <activity android:name=".gbkconvert.GBKConvertActivity" />
+        <activity android:name=".bitmapcompress.BitmapDemoActivity"></activity>
     </application>
 
 </manifest>
