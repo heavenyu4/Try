@@ -43,9 +43,11 @@
         <activity android:name=".spinnerdemo.TestSpinnerActivity">
         </activity>
         <activity android:name=".gbkconvert.GBKConvertActivity">
-
         </activity>
         <activity android:name=".bitmapcompress.BitmapDemoActivity">
+
+        </activity>
+        <activity android:name=".dbtransction.DataBaseTranscActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
