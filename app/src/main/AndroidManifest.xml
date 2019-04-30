@@ -16,6 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
+        <activity android:name=".mmkvdemo.MMKVDemoActivity">
+        </activity>
+        <activity android:name=".mvpdemo.MvpDemoActivity">
+
+        </activity>
         <activity
             android:name=".MainActivity"
             android:theme="@style/DialogStyle">
