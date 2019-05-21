@@ -19,7 +19,6 @@
         <activity android:name=".mmkvdemo.MMKVDemoActivity">
         </activity>
         <activity android:name=".mvpdemo.MvpDemoActivity">
-
         </activity>
         <activity
             android:name=".MainActivity"
@@ -50,9 +49,11 @@
         <activity android:name=".gbkconvert.GBKConvertActivity">
         </activity>
         <activity android:name=".bitmapcompress.BitmapDemoActivity">
-
         </activity>
         <activity android:name=".dbtransction.DataBaseTranscActivity">
+
+        </activity>
+        <activity android:name=".collectionsync.CollectionSyncSetActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
