@@ -51,9 +51,11 @@
         <activity android:name=".bitmapcompress.BitmapDemoActivity">
         </activity>
         <activity android:name=".dbtransction.DataBaseTranscActivity">
-
         </activity>
         <activity android:name=".collectionsync.CollectionSyncSetActivity">
+
+        </activity>
+        <activity android:name=".fileseq.FileSequentialActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
