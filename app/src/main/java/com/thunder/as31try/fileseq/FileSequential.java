@@ -41,8 +41,7 @@ public class FileSequential  {
                 300L, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<Runnable>(), new DefaultThreadFactory(), new ThreadPoolExecutor.AbortPolicy());
 
-
-        mService.execute(new Runnable() {
+        DiskIoThreadExecutor.getIOExecutor().execute(new Runnable() {
             @Override
             public void run() {
                 Log.d(TAG, "run: start copy dir");
@@ -56,8 +55,21 @@ public class FileSequential  {
             }
         });
 
+//        mService.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                Log.d(TAG, "run: start copy dir");
+//                FileUtils.copyDir("/sdcard/xiaoai", "/storage/sda1/macfiles/xiaoai-dst", new FileUtils.OnReplaceListener() {
+//                    @Override
+//                    public boolean onReplace() {
+//                        return true;
+//                    }
+//                });
+//                Log.d(TAG, "run: end copy dir");
+//            }
+//        });
 
-        mService.execute(new Runnable() {
+        DiskIoThreadExecutor.getIOExecutor().execute(new Runnable() {
             @Override
             public void run() {
                 Log.d(TAG, "run: start log.zip unzip");
@@ -69,6 +81,18 @@ public class FileSequential  {
                 Log.d(TAG, "run: end log.zip unzip ");
             }
         });
+//        mService.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                Log.d(TAG, "run: start log.zip unzip");
+//                try {
+//                    ZipUtils.unzipFile("sdcard/log.zip", "/storage/sda1/macfiles/log_zip");
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                Log.d(TAG, "run: end log.zip unzip ");
+//            }
+//        });
     }
 
 
