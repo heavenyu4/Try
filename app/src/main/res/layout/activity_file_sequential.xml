@@ -5,6 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".fileseq.FileSequentialActivity">
+
+    <ProgressBar
+        android:indeterminateDrawable="@drawable/net_check_loading"
+        android:indeterminateBehavior="repeat"
+        android:layout_width="26dp"
+        android:layout_height="26dp"/>
 
 </android.support.constraint.ConstraintLayout>
