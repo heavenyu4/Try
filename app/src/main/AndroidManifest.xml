@@ -41,6 +41,7 @@
         <activity android:name=".fragmentdemo.FragmentDemoActivity">
         </activity>
         <activity android:name=".exceptioncheck.TestExceptionActivity">
+
         </activity>
         <activity android:name=".anno.TestAnnotationActivity">
         </activity>
@@ -53,9 +54,10 @@
         <activity android:name=".dbtransction.DataBaseTranscActivity">
         </activity>
         <activity android:name=".collectionsync.CollectionSyncSetActivity">
-
         </activity>
         <activity android:name=".fileseq.FileSequentialActivity">
+        </activity>
+        <activity android:name=".db.DbUpdateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
