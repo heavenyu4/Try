@@ -10,19 +10,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
-        <activity android:name=".testMultiThread.TestHandlerActivity">
+        <activity android:name=".testdatabinding.TestDataBindingActivity"></activity>
+        <activity android:name=".testpopupwindow.TestPopupWindowActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".mmkvdemo.MMKVDemoActivity"></activity>
-        <activity android:name=".mvpdemo.MvpDemoActivity"></activity>
+        <activity android:name=".testMultiThread.TestHandlerActivity"></activity>
+        <activity android:name=".mmkvdemo.MMKVDemoActivity" />
+        <activity android:name=".mvpdemo.MvpDemoActivity" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/DialogStyle"></activity>
+            android:theme="@style/DialogStyle" />
         <activity android:name=".bluetooth.Main" />
         <activity android:name=".bluetooth.AutoConnectActivity" />
         <activity android:name=".bluetooth.DeviceListActivity" />
@@ -31,29 +32,26 @@
         <activity android:name=".bluetooth.TerminalActivity" />
         <activity android:name=".ziptest.ZipDemoActivity" />
         <activity android:name=".okgotest.OkGoDemoActivity" />
-
         <activity android:name=".activity.LeakTestActivity" />
+        <activity android:name=".activity.PhotoOOMActivity" />
+        <activity android:name=".fragmentdemo.FragmentDemoActivity" />
+        <activity android:name=".exceptioncheck.TestExceptionActivity" />
+        <activity android:name=".anno.TestAnnotationActivity" />
+        <activity android:name=".spinnerdemo.TestSpinnerActivity" />
+        <activity android:name=".gbkconvert.GBKConvertActivity" />
+        <activity android:name=".bitmapcompress.BitmapDemoActivity" />
+        <activity android:name=".dbtransction.DataBaseTranscActivity" />
+        <activity android:name=".collectionsync.CollectionSyncSetActivity" />
+        <activity android:name=".fileseq.FileSequentialActivity" />
+        <activity android:name=".db.DbUpdateActivity" />
 
-        <activity android:name=".activity.PhotoOOMActivity"></activity>
-        <activity android:name=".fragmentdemo.FragmentDemoActivity"></activity>
-        <activity android:name=".exceptioncheck.TestExceptionActivity"></activity>
-        <activity android:name=".anno.TestAnnotationActivity"></activity>
-        <activity android:name=".spinnerdemo.TestSpinnerActivity"></activity>
-        <activity android:name=".gbkconvert.GBKConvertActivity"></activity>
-        <activity android:name=".bitmapcompress.BitmapDemoActivity"></activity>
-        <activity android:name=".dbtransction.DataBaseTranscActivity"></activity>
-        <activity android:name=".collectionsync.CollectionSyncSetActivity"></activity>
-        <activity android:name=".fileseq.FileSequentialActivity"></activity>
-        <activity android:name=".db.DbUpdateActivity">
-
-        </activity>
         <service android:name=".service.LeakUploadService" />
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
 </manifest>

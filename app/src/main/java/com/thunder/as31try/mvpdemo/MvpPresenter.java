@@ -58,11 +58,11 @@ public class MvpPresenter implements MvpContract.Presenter {
                 .observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Integer>() {
-            @Override
-            public void accept(Integer integer) throws Exception {
-                view.showProcess(integer);
-            }
-        });
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        view.showProcess(integer);
+                    }
+                });
 
 
     }
