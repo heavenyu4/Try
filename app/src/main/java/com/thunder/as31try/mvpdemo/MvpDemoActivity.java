@@ -15,7 +15,8 @@ public class MvpDemoActivity extends AppCompatActivity implements MvpContract.Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mvp_demo);
-        mvpPresenter = new MvpPresenter(this);
+        MvpModel model = new MvpModel();
+        mvpPresenter = new MvpPresenter(model, this);
         mvpPresenter.loadMore();
     }
 

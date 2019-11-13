@@ -1,28 +1,26 @@
 package com.thunder.as31try.mvpdemo;
 
-import java.util.ArrayList;
+import android.util.Log;
+
 import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class MvpPresenter implements MvpContract.Presenter {
-    List<Integer> data;
     MvpContract.View view;
+    MvpContract.Model mModel;
+    String TAG = "MvpPresenter";
 
-    public MvpPresenter(MvpContract.View view) {
+    public MvpPresenter(MvpContract.Model model, MvpContract.View view) {
         this.view = view;
+        this.mModel = model;
     }
 
     @Override
     public void loadMore() {
-        data = new ArrayList<>(4);
-        data.add(1);
-        data.add(10);
-        data.add(30);
-        data.add(50);
+        List<Integer> data = mModel.getData();
 
 //        Observable<Integer> listObservable = Observable.fromIterable(data);
 //        Observable<Long> timeObservable = Observable.interval(3000, TimeUnit.SECONDS);
@@ -54,16 +52,21 @@ public class MvpPresenter implements MvpContract.Presenter {
 //                    }
 //                });
 
-        Observable.fromIterable(data)
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Integer>() {
-                    @Override
-                    public void accept(Integer integer) throws Exception {
-                        view.showProcess(integer);
-                    }
-                });
+//        Observable.fromIterable(data)
+//                .observeOn(Schedulers.io())
+//                .subscribeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Consumer<Integer>() {
+//                    @Override
+//                    public void accept(Integer integer) throws Exception {
+//                        view.showProcess(integer);
+//                    }
+//                });
 
+        Log.d(TAG, "loadMore: ");
+        Observable.fromIterable(data)
+              .observeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe();
 
     }
 }

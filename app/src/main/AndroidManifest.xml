@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.thunder.as31try">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -10,17 +16,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
-        <activity android:name=".testdatabinding.TestDataBindingActivity"></activity>
+        <activity android:name=".mvpdemotwo.MvpDemo2Activity"></activity>
+        <activity android:name=".testdatabinding.TestDataBindingActivity" />
         <activity android:name=".testpopupwindow.TestPopupWindowActivity">
+
+        </activity>
+        <activity android:name=".testMultiThread.TestHandlerActivity" />
+        <activity android:name=".mmkvdemo.MMKVDemoActivity" />
+        <activity android:name=".mvpdemo.MvpDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".testMultiThread.TestHandlerActivity"></activity>
-        <activity android:name=".mmkvdemo.MMKVDemoActivity" />
-        <activity android:name=".mvpdemo.MvpDemoActivity" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/DialogStyle" />
@@ -47,11 +56,5 @@
 
         <service android:name=".service.LeakUploadService" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
 </manifest>

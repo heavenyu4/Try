@@ -1,5 +1,7 @@
 package com.thunder.as31try.mvpdemo;
 
+import java.util.List;
+
 public interface MvpContract {
 
     interface View{
@@ -9,6 +11,10 @@ public interface MvpContract {
 
     interface Presenter{
         void loadMore();
+    }
+
+    interface Model {
+        List<Integer> getData();
     }
 
 }
