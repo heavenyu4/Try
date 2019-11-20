@@ -16,19 +16,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
-        <activity android:name=".mvpdemotwo.MvpDemo2Activity"></activity>
-        <activity android:name=".testdatabinding.TestDataBindingActivity" />
-        <activity android:name=".testpopupwindow.TestPopupWindowActivity">
-
-        </activity>
-        <activity android:name=".testMultiThread.TestHandlerActivity" />
-        <activity android:name=".mmkvdemo.MMKVDemoActivity" />
-        <activity android:name=".mvpdemo.MvpDemoActivity">
+        <activity android:name=".interview.TestViewNodeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity android:name=".mvpdemotwo.MvpDemo2Activity" />
+        <activity android:name=".testdatabinding.TestDataBindingActivity" />
+        <activity android:name=".testpopupwindow.TestPopupWindowActivity"></activity>
+        <activity android:name=".testMultiThread.TestHandlerActivity" />
+        <activity android:name=".mmkvdemo.MMKVDemoActivity" />
+        <activity android:name=".mvpdemo.MvpDemoActivity">
+
         </activity>
         <activity
             android:name=".MainActivity"
