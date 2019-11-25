@@ -3,6 +3,7 @@
 buildscript {
     
     repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         jcenter()
         mavenCentral()
         google()
@@ -20,9 +21,9 @@ buildscript {
 allprojects {
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-        google()
         maven { url "https://jitpack.io" } //依赖'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'需要设置的属性
         jcenter()
+        google()
     }
 }
 
