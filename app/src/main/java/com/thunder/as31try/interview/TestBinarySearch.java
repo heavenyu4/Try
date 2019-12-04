@@ -10,23 +10,29 @@ import java.util.Arrays;
 public class TestBinarySearch {
 
     public static void main(String[] args) {
-        int [] arr = {20,30,70,10,90};
+        int[] arr = {20, 30, 70, 10};
         Arrays.sort(arr);
-        int search = binarySearch(arr, 10);
+        int search = binarySearch(arr, 70);
         System.out.println("search: " + search);
     }
 
-    private static int binarySearch(int [] arr, int value){
+    private static int binarySearch(int[] arr, int value) {
         int left = 0;
-        int right = arr.length -1;
+        int right = arr.length - 1;
         int mid = 0;
-        while (left < right){
-            mid = (left + right) /2;
-            if (arr[mid] <value){
-                left = mid;
-            }else if(arr[mid] > value){
-                right = mid;
-            }else{
+        while (left <= right) {
+            mid = (left + right) / 2;
+            System.out.println(" left: " + left + " right: " + right
+                    + " mid: " + mid
+            );
+            System.out.println(" leftV: " + arr[left] + " rightV: " + arr[right]
+                    + " midV: " + arr[mid] + " value: " + value
+            );
+            if (value > arr[mid]) {
+                left = mid + 1;
+            } else if (value < arr[mid]) {
+                right = mid - 1;
+            } else {
                 return mid;
             }
 
