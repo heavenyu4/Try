@@ -10,7 +10,7 @@ package com.thunder.as31try.singleinstance;
 public class SingleLazyLoad {
 
     private SingleLazyLoad(){}
-    private static SingleLazyLoad instance;
+    private static volatile SingleLazyLoad instance;
 
     public static SingleLazyLoad getInstance() {
         if (instance == null){
