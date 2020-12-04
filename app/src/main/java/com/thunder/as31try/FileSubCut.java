@@ -12,14 +12,25 @@ import java.io.OutputStreamWriter;
 /**
  * Author: heaven
  * Time: 2019/4/15  20:13
- * Description:
+ * Description: 按照字段切割文件
  */
-public class FileCut {
+public class FileSubCut {
+
+    static String tags[] = {
+//            "OneSDKChannel",
+//            "OneSDKDemo",
+//            "OneSDKCore",
+//            "OneSDKRequest"
+
+            " 20530 "
+
+    };
+
+
 
     /**
      *
      * @Description 文件分割
-     * @param src 分割文件路径
      * @param maxline 最大行数（即每个文件中存储的行数）
      * @throws IOException
      */
@@ -51,13 +62,23 @@ public class FileCut {
                 BufferedWriter bw = new BufferedWriter(osw);
                 String line = "";// 一行行读取文件
                 int m = 1;
-                while((line = br.readLine())!=null ){
-                    bw.write(line+"\t\n");
-                    if(m>=maxline){
-                        break;
+                while((line = br.readLine())!=null ) {
+//                    if (line.substring(""))
+                    int orderIdInd = line.lastIndexOf("\\");
+                    if (orderIdInd != -1) {
+                        String substring = line.substring(orderIdInd);
+//                    if (isIncluded(line)) {
+                        bw.write(substring + "\t\n");
+                        if (m >= maxline) {
+                            break;
+                        }
+                        m++;
                     }
-                    m++;
+                    else{
+                        System.out.println(line);
+                    }
                 }
+//                }
                 if(m<maxline) {
                     end = true;
                 }
@@ -79,11 +100,24 @@ public class FileCut {
 
     }
 
+    private static boolean isIncluded(String line){
+        if (line.isEmpty()){
+            return false;
+        }else{
+            for (int i = 0; i < tags.length; i++) {
+                if (line.contains(tags[i])){
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         // TODO Auto-generated method stub
        splitFileDemo(
-                "D:\\file\\anr\\serial-com20_B_20191202_000000.log",
-                30000);
+                "D:\\file\\gradlewload.log",
+                100000);
     }
 
 }
