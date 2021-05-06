@@ -1,0 +1,15 @@
+package com.hyw.as31try.pattern.decorate;
+
+/**
+ * Author: heaven
+ * Time: 2019/10/28  13:56
+ * Description:具体装饰者
+ */
+public class ManDecoratorB extends Decorator {
+
+    @Override
+    public void eat() {
+        super.eat();
+        System.out.println("ManDecoratorB ");
+    }
+}

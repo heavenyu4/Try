@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.thunder.as31try">
+    package="com.hyw.as31try">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,20 +15,37 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light">
-        <activity android:name=".screenshot.TestScreenShotActivity">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".activity.xiaoao.SplashActivity"
+            android:configChanges="screenSize|orientation|keyboard|navigation|layoutDirection"
+            android:launchMode="standard"
+            android:screenOrientation="sensorLandscape"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activity.SavePhoto2AlbumActivity"></activity>
+        <activity
+            android:name=".activity.xiaoao.LogoTestActivity"
+            android:launchMode="singleTop"
+            android:configChanges="keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
 
         </activity>
-        <activity android:name=".testMultiThread.TestLooperPrepareMulti">
-
-        </activity>
+        <activity
+            android:name=".activity.xiaoao.PermissonActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:theme="@style/ActivityTranslucent"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".screenshot.TestScreenShotActivity" />
+        <activity android:name=".testMultiThread.TestLooperPrepareMulti" />
         <activity android:name=".activity.TestCallbacknullActivity" />
-        <activity android:name=".viewpagertest.TestViewPagerActivity"></activity>
+        <activity android:name=".viewpagertest.TestViewPagerActivity" />
         <activity android:name=".interview.TestViewNodeActivity" />
         <activity android:name=".mvpdemotwo.MvpDemo2Activity" />
         <activity android:name=".testdatabinding.TestDataBindingActivity" />

@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.thunder.as31try"
+        applicationId "com.hyw.as31try"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
@@ -40,7 +40,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation project(':library')
-    implementation 'com.blankj:utilcode:1.11.1'
+    implementation 'com.blankj:utilcode:1.30.0'
     //必须使用
     implementation 'com.lzy.net:okgo:3.0.4'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
