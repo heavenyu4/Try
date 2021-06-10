@@ -19,6 +19,7 @@
         <activity android:name=".activity.xiaoao.SplashActivity"
             android:configChanges="screenSize|orientation|keyboard|navigation|layoutDirection"
             android:launchMode="standard"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
             android:screenOrientation="sensorLandscape"
             >
             <intent-filter>

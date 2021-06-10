@@ -31,6 +31,8 @@ import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.view.WindowManager.LayoutParams.FIRST_APPLICATION_WINDOW;
+
 public class LogoTestActivity extends AppCompatActivity {
     private String TAG = "LogoTestActivity";
     private MediaPlayer mMediaPlayer;
@@ -55,7 +57,13 @@ public class LogoTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logo_test);
-        loadFlash();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadFlash();
+            }
+        }, 500);
+//        loadFlash();
         media(this, true);
 //        requestMyPermission();
         requestSecondPermission();
@@ -129,13 +137,13 @@ public class LogoTestActivity extends AppCompatActivity {
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
                 Log.d(TAG, "surfaceChanged: ");
-                if (mMediaPlayer != null) {
-                    //避免黑屏 只有声音
-                    mMediaPlayer.setDisplay(holder);
-                    if (!mMediaPlayer.isPlaying()) {
-                        mMediaPlayer.start();
-                    }
-                }
+//                if (mMediaPlayer != null) {
+//                    //避免黑屏 只有声音
+//                    mMediaPlayer.setDisplay(holder);
+//                    if (!mMediaPlayer.isPlaying()) {
+//                        mMediaPlayer.start();
+//                    }
+//                }
 
             }
 
@@ -161,6 +169,12 @@ public class LogoTestActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         activity.addContentView(mSurfaceView, new ViewGroup.LayoutParams(-1, -1));
+//        Dialog dialog = new Dialog(activity);
+//        dialog.setContentView(mSurfaceView, new ViewGroup.LayoutParams(-1, -1));
+//        //            dialogWindow.setType(FIRST_APPLICATION_WINDOW);
+//
+//        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION);
+//        dialog.show();
     }
 
     @Override
@@ -213,6 +227,7 @@ public class LogoTestActivity extends AppCompatActivity {
 
             final Dialog dialog = new Dialog(activity);
             Window dialogWindow = dialog.getWindow();
+//            dialogWindow.setType(FIRST_APPLICATION_WINDOW);
             WindowManager.LayoutParams lp = null;
             // 设置无标题
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

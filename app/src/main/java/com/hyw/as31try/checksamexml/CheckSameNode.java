@@ -1,5 +1,9 @@
 package com.hyw.as31try.checksamexml;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -13,7 +17,7 @@ import java.util.LinkedList;
 class CheckSameNode {
 
     static LinkedList<Node> allNodes;
-    static String AxmlPath = "D:\\project\\onesdkgit\\baidu\\4.0\\Common_baidu_sdk\\templatefiles\\AndroidManifest.xml";
+    static String AxmlPath = "D:\\project\\onesdkgit\\youxifanjuhe\\Common_yxfjh_sdk\\templatefiles\\AndroidManifest.xml";
 
 
     public static void main(String[] args) {
@@ -28,6 +32,8 @@ class CheckSameNode {
             String line = "";
             int cnt = 0;
             while ((line = br.readLine()) != null) {
+                checkSomeFeature(line, cnt);
+
                 cnt++;
                 if (line.contains("uses-permission")) {
                     continue;
@@ -51,6 +57,29 @@ class CheckSameNode {
             e.printStackTrace();
         }
 
+    }
+
+    /**
+     * 检查一些清单文件的特性 是否存在
+     * @param line
+     * @param count
+     */
+    private static void checkSomeFeature(String line, int count) {
+        if (line.isEmpty()){
+            return;
+        }
+        if (line.contains("tools:")){
+            System.out.println(count + ": " + line);
+        }
+        if (line.contains("style") && line.contains("Translucent")){
+            System.out.println(count + ": " + line);
+        }
+        if (line.contains("<provider")){
+            System.out.println(count + ": " + line);
+        }
+        if (line.contains("targetActivity")){
+            System.out.println(count + ": " + line);
+        }
     }
 
     private static void addNode(String name, int cnt) {
