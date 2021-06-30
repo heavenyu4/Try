@@ -19,7 +19,7 @@ public class ExtractRFile {
 
     public static void main(String[] args) {
         //将lib工程下libs里的所有文件去提取即可
-        String path = "D:\\project\\onesdkgit\\amigo\\JinliSDK_Android_LibProject\\libs";
+        String path = "D:\\project\\onesdkgit\\mgtv\\mgtvSDK_Android_LibProject\\libs";
         File dir = new File(path);
         FileFilter fileFilter = new FileFilter() {
 
@@ -47,7 +47,7 @@ public class ExtractRFile {
 
                     //如果R.txt内容不为空的话  文件长度大于1行的话(避免只有一行app_name的情况) 提取包名
                     if (!StringUtils.isEmpty(content)) {
-                        String[] split = content.split("\r\n");
+                        String[] split = content.split("\n");
                         if (split != null && split.length > 1) {
                             getPackageName(AndroidManiFile);
                         }

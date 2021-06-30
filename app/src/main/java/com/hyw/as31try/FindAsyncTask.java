@@ -16,7 +16,7 @@ import java.util.Iterator;
 
 class FindAsyncTask {
 
-    private static String dirPath = "D:\\file\\testAsynctask\\zhanshen\\01\\bilibili_svn_133783_0.6.8_10_signed_signed";
+    private static String dirPath = "D:\\file\\testAsynctask\\zhanshen\\04\\bilibili_svn_133783_0.6.8_10_signed_signed";
     private static HashSet<File> execFile = new HashSet<>(128);
     private static HashSet<File> superFile = new HashSet<>(128);
 
@@ -73,15 +73,15 @@ class FindAsyncTask {
             boolean isSubClass = false;
             while ((line = br.readLine()) != null) {
                 if (line.contains("->execute([Ljava/lang/Object;)Landroid/os/AsyncTask")) {
-                    System.out.println(pathname.getAbsolutePath());
-                    System.out.println(line);
+//                    System.out.println(pathname.getAbsolutePath());
+//                    System.out.println(line);
                     isNeedRp = true;
                     break;
 //                    execFile.add(pathname);
                 }
                 if (line.contains(".super Landroid/os/AsyncTask")) {
-                    System.out.println(pathname.getAbsolutePath());
-                    System.out.println(line);
+//                    System.out.println(pathname.getAbsolutePath());
+//                    System.out.println(line);
                     isNeedRp = true;
                     isSubClass = true;
 //                    superFile.add(pathname);
@@ -112,32 +112,47 @@ class FindAsyncTask {
         try {
             String bakPath = "D:\\file\\testAsynctask\\smali-two\\tmp";
             File tmpFile = new File(bakPath, file.getName());
-            System.out.println("bakpath: " + tmpFile.getAbsolutePath());
+//            System.out.println("bakpath: " + tmpFile.getAbsolutePath());
             BufferedWriter bw = new BufferedWriter(new FileWriter(tmpFile, false));
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line = "";
             while ((line = br.readLine()) != null) {
-                if (line.contains("->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;")) {
+                if (line.contains("->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;")
+                        && !line.contains("Landroid/os/AsyncTask;->executeNew([Ljava/lang/Object;)Landroid/os/AsyncTask;")
+                ) {
                     String replace = line.replace("->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;", "->executeNew([Ljava/lang/Object;)Landroid/os/AsyncTask;");
-//                    System.out.println(line);
+                    System.out.println(line + " -> " + replace);
                     bw.write(replace);
                     bw.newLine();
                 } else if (isSubClass && line.contains("Landroid/os/AsyncTask")) {
                     //避免executeOnExecutor情况, 这种已经在不同线程的操作, 我们就不再处理了
 //                    if (line.contains("Landroid/os/AsyncTask;->executeOnExecutor(Ljava/util/concurrent/Executor;[Ljava/lang/Object;)Landroid/os/AsyncTask")) {
-                    if (line.contains("->executeOnExecutor(Ljava/util/concurrent/Executor;[Ljava/lang/Object;)Landroid/os/AsyncTask")) {
-                        continue;
+//                    if (line.contains("->executeOnExecutor(Ljava/util/concurrent/Executor;[Ljava/lang/Object;)Landroid/os/AsyncTask")) {
+//                        continue;
+//                    }
+//                    //避免调用AsyncTask的THREAD_POOL_EXECUTOR变量的情况
+//                    if (line.contains("Landroid/os/AsyncTask;->THREAD_POOL_EXECUTOR")) {
+//                        continue;
+//                    }
+//                    //避免方法里有AsyncTask参数的情况 e.g.  public static <T> void m16317a(AsyncTask asyncTask, T... tArr) {
+//                    if (line.contains(".method") && line.contains("Landroid/os/AsyncTask")){
+//                        continue;
+//                    }
+                    String replace = "";
+                    if (line.contains(".super Landroid/os/AsyncTask;")
+                            || line.contains("\"Landroid/os/AsyncTask\",")
+                            || line.contains("invoke-direct {p0}, Landroid/os/AsyncTask;-><init>()V")
+                    ) {
+                        replace = line.replace("Landroid/os/AsyncTask", "Lcom/pwrd/onesdk/CustomAsyncTask");
+                        System.out.println(line + " -> " + replace);
+                    } else if (line.contains("->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;")
+                            && !line.contains("Landroid/os/AsyncTask;->executeNew([Ljava/lang/Object;)Landroid/os/AsyncTask;")
+                    ) {
+                        replace = line.replace("->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;", "->executeNew([Ljava/lang/Object;)Landroid/os/AsyncTask;");
+                        System.out.println(line + " -> " + replace);
+                    } else {
+                        replace = line;
                     }
-                    //避免调用AsyncTask的THREAD_POOL_EXECUTOR变量的情况
-                    if (line.contains("Landroid/os/AsyncTask;->THREAD_POOL_EXECUTOR")) {
-                        continue;
-                    }
-                    //避免方法里有AsyncTask参数的情况 e.g.  public static <T> void m16317a(AsyncTask asyncTask, T... tArr) {
-                    if (line.contains(".method") && line.contains("Landroid/os/AsyncTask")){
-                        continue;
-                    }
-                    String replace = line.replace("Landroid/os/AsyncTask", "Lcom/pwrd/onesdk/CustomAsyncTask");
-                    System.out.println(line + " -> " + replace);
                     bw.write(replace);
                     bw.newLine();
                 } else {
