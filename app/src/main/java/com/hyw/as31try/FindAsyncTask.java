@@ -1,8 +1,7 @@
 package com.hyw.as31try;
 
-import com.blankj.utilcode.util.FileIOUtils;
 import com.blankj.utilcode.util.FileUtils;
-import com.hyw.as31try.utils.FileUtilsThird;
+import com.blankj.utilcode.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,19 +9,26 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.time.chrono.IsoChronology;
 import java.util.HashSet;
-import java.util.Iterator;
 
+/***
+ * 替换游戏包里的AsyncTask类
+ *
+ *
+ * 替换asynctask添加THREAD_POOL_EXECUTOR的替换, 但是还未验证,
+ * 添加拷贝one的task类, 执行前记得更新task相关类,
+ */
 class FindAsyncTask {
 
-    private static String dirPath = "D:\\file\\testAsynctask\\zhanshen\\04\\bilibili_svn_133783_0.6.8_10_signed_signed";
+    private static String dirPath = "E:\\game\\huanta\\bilibili\\modify\\bilibili_QRSL-release-stable_signed";
     private static HashSet<File> execFile = new HashSet<>(128);
     private static HashSet<File> superFile = new HashSet<>(128);
 
     public static void main(String[] args) {
 
         find(dirPath);
+//        String s = replaceThreadPoolConst("        sget-object v0, Landroid/os/AsyncTask;->THREAD_POOL_EXECUTOR:Ljava/util/concurrent/Executor;");
+//        System.out.println(s);
     }
 
     private static void find(String dirPath) {
@@ -54,24 +60,36 @@ class FindAsyncTask {
         if (pathname.getAbsolutePath().contains("androidx\\")) {
             return;
         }
-        if (pathname.getName().contains("CustomAsyncTask.smali")) {
+        if (pathname.getName().contains("OneAsyncTask.smali")) {
             return;
         }
-        if (pathname.getName().contains("TaskExecutor.smali")) {
+        if (pathname.getName().contains("OneTaskExecutor.smali")) {
             return;
         }
-        if (pathname.getName().contains("TaskExecutor$1.smali")) {
+        if (pathname.getName().contains("OneTaskExecutor$1.smali")) {
             return;
         }
-        if (pathname.getName().contains("TaskExecutor$2.smali")) {
+        if (pathname.getName().contains("OneTaskExecutor$2.smali")) {
             return;
         }
+        //只改B站包
+//        if (!pathname.getAbsolutePath().contains("com\\bsgamesdk\\")){
+//            return;
+//        }
+        //只改腾讯包
+//        if (!pathname.getAbsolutePath().contains("com\\tencent\\")) {
+//            return;
+//        }
         try {
             BufferedReader br = new BufferedReader(new FileReader(pathname));
             String line = "";
             boolean isNeedRp = false;
             boolean isSubClass = false;
             while ((line = br.readLine()) != null) {
+                if (line.contains("executeOnExecutor")) {
+                    System.out.println("======warning: pathname: " + pathname.getAbsolutePath() + " \t" + line);
+                }
+
                 if (line.contains("->execute([Ljava/lang/Object;)Landroid/os/AsyncTask")) {
 //                    System.out.println(pathname.getAbsolutePath());
 //                    System.out.println(line);
@@ -87,14 +105,14 @@ class FindAsyncTask {
 //                    superFile.add(pathname);
                     break;
                 }
+                if (line.contains("Landroid/os/AsyncTask;->THREAD_POOL_EXECUTOR:Ljava/util/concurrent/Executor;")){
+                    isNeedRp = true;
+                    break;
+                }
             }
 
             br.close();
             if (isNeedRp) {
-//                replaceFile(pathname, "->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;",
-//                        "->executeNew([Ljava/lang/Object;)Landroid/os/AsyncTask;");
-//                replaceFile(pathname, "Landroid/os/AsyncTask",
-//                        "Lcom/pwrd/onesdk/CustomAsyncTask");
                 replaceFile(pathname, isSubClass);
             }
 
@@ -139,24 +157,34 @@ class FindAsyncTask {
 //                        continue;
 //                    }
                     String replace = "";
-                    if (line.contains(".super Landroid/os/AsyncTask;")
+                    String result = replaceThreadPoolConst(line);
+                    if (!StringUtils.isEmpty(result)) {
+                        replace = result;
+                    } else if (line.contains(".super Landroid/os/AsyncTask;")
                             || line.contains("\"Landroid/os/AsyncTask\",")
                             || line.contains("invoke-direct {p0}, Landroid/os/AsyncTask;-><init>()V")
                     ) {
-                        replace = line.replace("Landroid/os/AsyncTask", "Lcom/pwrd/onesdk/CustomAsyncTask");
-                        System.out.println(line + " -> " + replace);
+                        replace = line.replace("Landroid/os/AsyncTask", "Lcom/pwrd/onesdk/task/OneAsyncTask");
                     } else if (line.contains("->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;")
                             && !line.contains("Landroid/os/AsyncTask;->executeNew([Ljava/lang/Object;)Landroid/os/AsyncTask;")
                     ) {
                         replace = line.replace("->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;", "->executeNew([Ljava/lang/Object;)Landroid/os/AsyncTask;");
-                        System.out.println(line + " -> " + replace);
                     } else {
                         replace = line;
+                    }
+                    if (!replace.equals(line)) {
+                        System.out.println(line + " -> " + replace);
                     }
                     bw.write(replace);
                     bw.newLine();
                 } else {
-                    bw.write(line);
+                    String replace = line;
+                    String result = replaceThreadPoolConst(line);
+                    if (!StringUtils.isEmpty(result)) {
+                        replace = result;
+                        System.out.println(line + " -> " + replace);
+                    }
+                    bw.write(replace);
                     bw.newLine();
                 }
 
@@ -171,8 +199,47 @@ class FindAsyncTask {
                     return true;
                 }
             });
+            String smailPath = dirPath + "\\smali";
+            File smaliDir = new File(smailPath);
+            if (smaliDir.exists()) {
+                boolean copy = FileUtils.copy("D:\\file\\testAsynctask\\onetask", smailPath);
+                System.out.println("copy onetask result: " + copy);
+            } else {
+                System.out.println();
+                System.out.println(smailPath + " wrong? ");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static String replaceThreadPoolConst(String line){
+        /*
+        sget-object v0, Landroid/os/AsyncTask;->THREAD_POOL_EXECUTOR:Ljava/util/concurrent/Executor;
+
+        -->
+
+            new-instance v0, Lcom/pwrd/onesdk/task/OneTaskExecutor;
+
+            invoke-direct {v0}, Lcom/pwrd/onesdk/task/OneTaskExecutor;-><init>()V
+
+
+         */
+
+        //1.找掉变量名
+        if (line.contains("Landroid/os/AsyncTask;->THREAD_POOL_EXECUTOR:Ljava/util/concurrent/Executor;")){
+            int beginIndex = line.indexOf("sget-object ") + "sget-object ".length();
+            int endIndex = line.indexOf(", Landroid/os/AsyncTask;");
+            if (beginIndex == -1 || endIndex == -1){
+                System.out.println(line + " index error, begin: " + beginIndex + " endindex: " + endIndex);
+                return null;
+            }
+            String var = line.substring(beginIndex, endIndex);
+            String format = "    new-instance %s, Lcom/pwrd/onesdk/task/OneTaskExecutor;\n\n"
+                    + "    invoke-direct {%s}, Lcom/pwrd/onesdk/task/OneTaskExecutor;-><init>()V";
+            String result = String.format(format, var, var);
+            return result;
+        }
+        return null;
     }
 }

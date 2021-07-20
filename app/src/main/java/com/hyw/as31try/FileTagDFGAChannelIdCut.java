@@ -17,7 +17,7 @@ import java.util.HashMap;
  * onesdkGetSubchannelId的次数
  * 请注意 log是要从游戏启动开始抓的, 到进服以后
  */
-public class FileTagChannelIdCut {
+public class FileTagDFGAChannelIdCut {
 
     static String tags[] = {
             "onesdkGetChannelId",
