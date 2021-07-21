@@ -20,15 +20,24 @@ import java.util.HashSet;
  */
 class FindAsyncTask {
 
-    private static String dirPath = "E:\\game\\huanta\\bilibili\\modify\\bilibili_QRSL-release-stable_signed";
+    private static String dirPath = "D:\\file\\testAsynctask\\testchannel\\06\\2moddex\\classes";
     private static HashSet<File> execFile = new HashSet<>(128);
     private static HashSet<File> superFile = new HashSet<>(128);
 
     public static void main(String[] args) {
 
         find(dirPath);
-//        String s = replaceThreadPoolConst("        sget-object v0, Landroid/os/AsyncTask;->THREAD_POOL_EXECUTOR:Ljava/util/concurrent/Executor;");
-//        System.out.println(s);
+
+        //拷贝task到目标主dex
+        String smailPath = dirPath + "\\smali\\com\\pwrd\\onesdk";
+        File smaliDir = new File(smailPath);
+        if (!smaliDir.exists()) {
+            //如果smali目录不存在的话, 就是直接对的dex根目录操作的, task直接拷贝进来就行
+            smailPath = dirPath + "\\com\\pwrd\\onesdk";
+        }
+        boolean copy = FileUtils.copy("D:\\file\\testAsynctask\\onetask", smailPath);
+        System.out.println("copy onetask result: " + copy + " dstPath: " + smailPath);
+
     }
 
     private static void find(String dirPath) {
@@ -105,7 +114,7 @@ class FindAsyncTask {
 //                    superFile.add(pathname);
                     break;
                 }
-                if (line.contains("Landroid/os/AsyncTask;->THREAD_POOL_EXECUTOR:Ljava/util/concurrent/Executor;")){
+                if (line.contains("Landroid/os/AsyncTask;->THREAD_POOL_EXECUTOR:Ljava/util/concurrent/Executor;")) {
                     isNeedRp = true;
                     break;
                 }
@@ -199,21 +208,13 @@ class FindAsyncTask {
                     return true;
                 }
             });
-            String smailPath = dirPath + "\\smali";
-            File smaliDir = new File(smailPath);
-            if (smaliDir.exists()) {
-                boolean copy = FileUtils.copy("D:\\file\\testAsynctask\\onetask", smailPath);
-                System.out.println("copy onetask result: " + copy);
-            } else {
-                System.out.println();
-                System.out.println(smailPath + " wrong? ");
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static String replaceThreadPoolConst(String line){
+    private static String replaceThreadPoolConst(String line) {
         /*
         sget-object v0, Landroid/os/AsyncTask;->THREAD_POOL_EXECUTOR:Ljava/util/concurrent/Executor;
 
@@ -227,10 +228,10 @@ class FindAsyncTask {
          */
 
         //1.找掉变量名
-        if (line.contains("Landroid/os/AsyncTask;->THREAD_POOL_EXECUTOR:Ljava/util/concurrent/Executor;")){
+        if (line.contains("Landroid/os/AsyncTask;->THREAD_POOL_EXECUTOR:Ljava/util/concurrent/Executor;")) {
             int beginIndex = line.indexOf("sget-object ") + "sget-object ".length();
             int endIndex = line.indexOf(", Landroid/os/AsyncTask;");
-            if (beginIndex == -1 || endIndex == -1){
+            if (beginIndex == -1 || endIndex == -1) {
                 System.out.println(line + " index error, begin: " + beginIndex + " endindex: " + endIndex);
                 return null;
             }
