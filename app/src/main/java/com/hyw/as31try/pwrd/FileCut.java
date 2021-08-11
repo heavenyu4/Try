@@ -1,4 +1,4 @@
-package com.hyw.as31try;
+package com.hyw.as31try.pwrd;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,25 +12,14 @@ import java.io.OutputStreamWriter;
 /**
  * Author: heaven
  * Time: 2019/4/15  20:13
- * Description: 按照字段切割文件
+ * Description:
  */
-public class FileSubCut {
-
-    static String tags[] = {
-//            "OneSDKChannel",
-//            "OneSDKDemo",
-//            "OneSDKCore",
-//            "OneSDKRequest"
-
-            " 20530 "
-
-    };
-
-
+public class FileCut {
 
     /**
      *
      * @Description 文件分割
+     * @param src 分割文件路径
      * @param maxline 最大行数（即每个文件中存储的行数）
      * @throws IOException
      */
@@ -62,23 +51,13 @@ public class FileSubCut {
                 BufferedWriter bw = new BufferedWriter(osw);
                 String line = "";// 一行行读取文件
                 int m = 1;
-                while((line = br.readLine())!=null ) {
-//                    if (line.substring(""))
-                    int orderIdInd = line.lastIndexOf("\\");
-                    if (orderIdInd != -1) {
-                        String substring = line.substring(orderIdInd);
-//                    if (isIncluded(line)) {
-                        bw.write(substring + "\t\n");
-                        if (m >= maxline) {
-                            break;
-                        }
-                        m++;
+                while((line = br.readLine())!=null ){
+                    bw.write(line+"\t\n");
+                    if(m>=maxline){
+                        break;
                     }
-                    else{
-                        System.out.println(line);
-                    }
+                    m++;
                 }
-//                }
                 if(m<maxline) {
                     end = true;
                 }
@@ -100,24 +79,11 @@ public class FileSubCut {
 
     }
 
-    private static boolean isIncluded(String line){
-        if (line.isEmpty()){
-            return false;
-        }else{
-            for (int i = 0; i < tags.length; i++) {
-                if (line.contains(tags[i])){
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-
     public static void main(String[] args) throws IOException {
         // TODO Auto-generated method stub
        splitFileDemo(
-                "D:\\file\\gradlewload.log",
-                100000);
+                "D:\\file\\anr\\serial-com20_B_20191202_000000.log",
+                30000);
     }
 
 }

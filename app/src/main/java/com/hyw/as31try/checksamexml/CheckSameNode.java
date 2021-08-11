@@ -80,6 +80,10 @@ class CheckSameNode {
         if (line.contains("targetActivity")){
             System.out.println(count + ": " + line);
         }
+        if (line.contains("${applicationId}")){
+            System.out.println(count + ": " + line);
+        }
+
     }
 
     private static void addNode(String name, int cnt) {

@@ -1,4 +1,4 @@
-package com.hyw.as31try;
+package com.hyw.as31try.pwrd;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,21 +12,21 @@ import java.io.OutputStreamWriter;
 /**
  * Author: heaven
  * Time: 2019/4/15  20:13
- * Description: 测试统计事件的调用
- * 请注意, log从游戏启动到进入角色后
+ * Description: 按照字段切割文件
  */
-public class FileTagDFGACut {
+public class FileSubCut {
 
     static String tags[] = {
-//            "PERFECT_DFGA",
-            "roleLoginSDK", //登录角色
-            "Create_role"  //创角
+//            "OneSDKChannel",
+//            "OneSDKDemo",
+//            "OneSDKCore",
+//            "OneSDKRequest"
+
+            " 20530 "
 
     };
-    static String tagsExcluded[]={
-//      "PERFECT_DFGA"
-    };
-    private static String sFilePath = "D:\\log\\20210630_163103.log";
+
+
 
     /**
      *
@@ -62,16 +62,23 @@ public class FileTagDFGACut {
                 BufferedWriter bw = new BufferedWriter(osw);
                 String line = "";// 一行行读取文件
                 int m = 1;
-                while((line = br.readLine())!=null ){
-                    //包含某些tag 并且不包含某些tag
-                    if (isIncluded(line) & !isExcluded(line) ) {
-                        bw.write(line + "\t\n");
+                while((line = br.readLine())!=null ) {
+//                    if (line.substring(""))
+                    int orderIdInd = line.lastIndexOf("\\");
+                    if (orderIdInd != -1) {
+                        String substring = line.substring(orderIdInd);
+//                    if (isIncluded(line)) {
+                        bw.write(substring + "\t\n");
                         if (m >= maxline) {
                             break;
                         }
                         m++;
                     }
+                    else{
+                        System.out.println(line);
+                    }
                 }
+//                }
                 if(m<maxline) {
                     end = true;
                 }
@@ -98,21 +105,7 @@ public class FileTagDFGACut {
             return false;
         }else{
             for (int i = 0; i < tags.length; i++) {
-                if (line.contains(tags[i]) && line.contains("PERFECT_DFGA")
-                        //DfgaSDK save event success表示本地化存储成功
-                        && line.contains("DfgaSDK save event success")) {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-    private static boolean isExcluded(String line){
-        if (line.isEmpty()){
-            return false;
-        }else{
-            for (int i = 0; i < tagsExcluded.length; i++) {
-                if (line.contains(tagsExcluded[i])){
+                if (line.contains(tags[i])){
                     return true;
                 }
             }
@@ -122,8 +115,8 @@ public class FileTagDFGACut {
 
     public static void main(String[] args) throws IOException {
         // TODO Auto-generated method stub
-        splitFileDemo(
-                sFilePath,
+       splitFileDemo(
+                "D:\\file\\gradlewload.log",
                 100000);
     }
 

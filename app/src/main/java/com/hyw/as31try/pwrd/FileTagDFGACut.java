@@ -1,4 +1,4 @@
-package com.hyw.as31try;
+package com.hyw.as31try.pwrd;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,24 +12,21 @@ import java.io.OutputStreamWriter;
 /**
  * Author: heaven
  * Time: 2019/4/15  20:13
- * Description: 按照字段切割文件
+ * Description: 测试统计事件的调用
+ * 请注意, log从游戏启动到进入角色后
  */
-public class FileTagCut {
+public class FileTagDFGACut {
 
     static String tags[] = {
-//            "OneSDK",
-//            "OneSDKDemo",
-//            "OneSDKCore",
-//            "OneSDKRequest"
-
-            "4538",
-            "com.pwrd.xxajh.jh"
+//            "PERFECT_DFGA",
+            "roleLoginSDK", //登录角色
+            "Create_role"  //创角
 
     };
     static String tagsExcluded[]={
 //      "PERFECT_DFGA"
     };
-    private static String sFilePath = "D:\\log\\20210426_120119.log";
+    private static String sFilePath = "D:\\log\\20210630_163103.log";
 
     /**
      *
@@ -101,7 +98,9 @@ public class FileTagCut {
             return false;
         }else{
             for (int i = 0; i < tags.length; i++) {
-                if (line.contains(tags[i])){
+                if (line.contains(tags[i]) && line.contains("PERFECT_DFGA")
+                        //DfgaSDK save event success表示本地化存储成功
+                        && line.contains("DfgaSDK save event success")) {
                     return true;
                 }
             }
