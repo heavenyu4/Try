@@ -1,7 +1,6 @@
 package com.hyw.as31try.pwrd;
 
 import com.blankj.utilcode.util.FileIOUtils;
-import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ZipUtils;
 
@@ -9,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
@@ -19,7 +19,7 @@ public class ExtractRFile {
 
     public static void main(String[] args) {
         //将lib工程下libs里的所有文件去提取即可
-        String path = "D:\\project\\onesdkgit\\mgtv\\mgtvSDK_Android_LibProject\\libs";
+        String path = "D:\\project\\onesdkgit\\hw\\hwSDK_Android_LibProject\\libs";
         File dir = new File(path);
         FileFilter fileFilter = new FileFilter() {
 
@@ -52,7 +52,8 @@ public class ExtractRFile {
                             getPackageName(AndroidManiFile);
                         }
                     }
-                    FileUtils.delete(dstFile);
+                    boolean delete = deleteDir(dstFile);
+//                    System.out.println("delete " + dst + " result: " + delete);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -83,6 +84,33 @@ public class ExtractRFile {
             }
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+    private static boolean deleteDir(final File dir) {
+        if (dir == null) return false;
+        // dir doesn't exist then return true
+        if (!dir.exists()) return true;
+        // dir isn't a directory then return false
+        if (!dir.isDirectory()) return false;
+        File[] files = dir.listFiles();
+        if (files != null && files.length > 0) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    if (!file.delete()) return false;
+                } else if (file.isDirectory()) {
+                    if (!deleteDir(file)) return false;
+                }
+            }
+        }
+        return dir.delete();
     }
 }
