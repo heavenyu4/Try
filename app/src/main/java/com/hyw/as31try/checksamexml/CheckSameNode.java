@@ -1,9 +1,5 @@
 package com.hyw.as31try.checksamexml;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.TextUtils;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -17,7 +13,7 @@ import java.util.LinkedList;
 class CheckSameNode {
 
     static LinkedList<Node> allNodes;
-    static String AxmlPath = "D:\\project\\onesdkgit\\youxifanjuhe\\Common_yxfjh_sdk\\templatefiles\\AndroidManifest.xml";
+    static String AxmlPath = "D:\\project\\onesdkgit\\TecentYYB\\Common_YYB_sdk\\templatefiles\\AndroidManifest.xml";
 
 
     public static void main(String[] args) {
@@ -32,9 +28,8 @@ class CheckSameNode {
             String line = "";
             int cnt = 0;
             while ((line = br.readLine()) != null) {
+                ++cnt;
                 checkSomeFeature(line, cnt);
-
-                cnt++;
                 if (line.contains("uses-permission")) {
                     continue;
                 }
