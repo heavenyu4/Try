@@ -11,7 +11,7 @@ import java.io.FileFilter;
  */
 class ExtraChannelJava {
     public static final String ONE_SDKCHANNEL_JAVA = "OneSDKChannel.java";
-    static String dirPath = "D:\\project\\onesdkgitcommon";
+    static String dirPath = "D:\\project\\onesdkgitcommon\\";
     static String tmp = "D:\\file\\onesdkchanneljava";
 
     public static void main(String[] args) {
