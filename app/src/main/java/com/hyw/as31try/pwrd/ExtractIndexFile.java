@@ -14,7 +14,7 @@ public class ExtractIndexFile {
 
     public static void main(String[] args) {
 
-        String path = "D:\\file\\testmultidex\\unitydemo0831";
+        String path = "D:\\file\\testmultidex\\unitydemo0906";
         File dir = new File(path);
         FileFilter fileFilter = new FileFilter() {
 
