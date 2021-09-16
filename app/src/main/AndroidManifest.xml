@@ -22,11 +22,7 @@
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
             android:screenOrientation="sensorLandscape"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activity.SavePhoto2AlbumActivity"></activity>
         <activity
@@ -47,7 +43,15 @@
         <activity android:name=".testMultiThread.TestLooperPrepareMulti" />
         <activity android:name=".activity.TestCallbacknullActivity" />
         <activity android:name=".viewpagertest.TestViewPagerActivity" />
-        <activity android:name=".interview.TestViewNodeActivity" />
+        <activity android:name=".interview.TestViewNodeActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity android:name=".mvpdemotwo.MvpDemo2Activity" />
         <activity android:name=".testdatabinding.TestDataBindingActivity" />
         <activity android:name=".testpopupwindow.TestPopupWindowActivity" />

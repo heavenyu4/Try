@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class TestBinarySearch {
 
     public static void main(String[] args) {
-        int[] arr = {20, 30, 70, 10};
+        int[] arr = {10, 20, 30, 70};
         Arrays.sort(arr);
         int search = binarySearch(arr, 70);
         System.out.println("search: " + search);

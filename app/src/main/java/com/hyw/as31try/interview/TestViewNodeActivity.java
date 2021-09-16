@@ -26,7 +26,7 @@ public class TestViewNodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_view_node);
         mLl = ((LinearLayout) findViewById(R.id.ll));
-        travelView(mLl);
+        travelViewDeep(mLl);
     }
 
 
@@ -40,11 +40,13 @@ public class TestViewNodeActivity extends AppCompatActivity {
         viewsDeque.push(rootView);
 
         while (!viewsDeque.isEmpty()){
+            //检索移除头结点
             View poll = viewsDeque.poll();
             Log.d("TAG", "travelView: " + poll.getTag().toString());
             if (poll instanceof ViewGroup){
                 ViewGroup vg = (ViewGroup) poll;
                 for (int i = 0; i < vg.getChildCount(); i++) {
+                    //结尾添加
                     viewsDeque.addLast(vg.getChildAt(i));
                 }
             }
@@ -60,11 +62,13 @@ public class TestViewNodeActivity extends AppCompatActivity {
         viewsDeque.push(rootView);
 
         while (!viewsDeque.isEmpty()){
+            //移除头结点
             View poll = viewsDeque.pop();
             Log.d("TAG", "travelView: " + poll.getTag().toString());
             if (poll instanceof ViewGroup){
                 ViewGroup vg = (ViewGroup) poll;
                 for (int i = 0; i < vg.getChildCount(); i++) {
+                    //头上添加
                     viewsDeque.push(vg.getChildAt(i));
                 }
             }
