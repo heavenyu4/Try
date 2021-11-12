@@ -51,9 +51,11 @@ class ExtraChannelSomeContent {
                     String chName = substring1.substring(0, substring1.indexOf("\\"));
                     System.out.println(chName);
                     System.out.println(line);
+                    br.close();
                     return;
                 }
             }
+            br.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
